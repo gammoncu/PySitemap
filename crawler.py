@@ -1,4 +1,4 @@
-import urllib.request
+import requests
 from urllib.parse import urlsplit, urlunsplit, urljoin, urlparse
 import re
 
@@ -23,8 +23,8 @@ class Crawler:
 		if not self.no_verbose:
 			print("Parsing " + url)
 
-		response = urllib.request.urlopen(url)
-		page = str(response.read())
+		response = requests.get(url)
+		page = str(response.text)
 
 		pattern = '<a [^>]*href=[\'|"](.*?)[\'"].*?>'
 
